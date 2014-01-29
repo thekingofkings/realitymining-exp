@@ -71,6 +71,7 @@ nondup_fri = nondup_fri(sid, :);
 
 %% get the friends frequency
 load 'data\binarys.mat';
+meeting_fre = freq;
 fri_fre = zeros(size(nondup_fri, 1), 1);
 for i = 1:size(nondup_fri, 1)
     pairID = sum(94:-1:94-i+2) + (j-i);
@@ -113,5 +114,6 @@ end
 
 [~, si] = sort(nonfri_fre(:,3), 'descend');
 nonfri_fre = nonfri_fre(si,:);
+
 
 topk_nonfri_fre = nonfri_fre(1:20,:);

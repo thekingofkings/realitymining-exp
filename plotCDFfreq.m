@@ -1,38 +1,39 @@
-%{
-Plot the CDF of frequency distribution of different pair cases
-=====================
+% Plot the CDF of frequency distribution of different pair cases
+% =====================
+% 
+% 
+% Data file explanation
+% ---------------------
+% There are three different cases:
+%     * Friends pair
+%     * Non-friends pair
+%     * Overall pair
+% 
+% The data file we will use is:
+%     data/binarys.mat
+% 
+% From the data file we will load the following variables:
+%     * binary_affliation
+%     * binary_friend
+%     * binary_group
+%     * meeting_fre
+% They are all statistics on each pair. In total, we have 95 users, so there
+% are nchoosek(95, 2) = 4465 pairs. For each pair we mark whether they are in
+% the same affiliation; they are in the same group; they are friends, and the
+% meetring frequency between them.
+% 
+% 
+% Observations
+% ---------------------
+% From the meeting_fre, we can see that there are 68 friends pair in total.
+% Because the friend information is obtained from survey. And there are
+% friend relationship that is only one way.
+% 
 
-
-Data file explanation
----------------------
-There are three different cases:
-    * Friends pair
-    * Non-friends pair
-    * Overall pair
-
-The data file we will use is:
-    data/binarys.mat
-
-From the data file we will load the following variables:
-    * binary_affliation
-    * binary_friend
-    * binary_group
-    * meeting_fre
-They are all statistics on each pair. In total, we have 95 users, so there
-are nchoosek(95, 2) = 4465 pairs. For each pair we mark whether they are in
-the same affiliation; they are in the same group; they are friends, and the
-meetring frequency between them.
-
-
-Observations
----------------------
-From the meeting_fre, we can see that there are 68 friends pair in total.
-Because the friend information is obtained from survey. And there are
-friend relationship that is only one way.
-
-%}
 
 load('data/binarys.mat');
+
+meeting_fre = freq;
 
 figure();
 hold on;
@@ -58,3 +59,4 @@ ylabel('Meeting frequency', 'fontsize', 16);
 title('');
 print('fig/cdfFreq.eps', '-dpsc');
 system('epstopdf fig/cdfFreq.eps');
+

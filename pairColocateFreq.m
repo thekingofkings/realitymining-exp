@@ -3,6 +3,7 @@ function coloc_fre = pairColocateFreq( ua, ub, records )
 % find their co-locating frequency
 
 
+
 ra = records(records(:,1) == ua, :);
 rb = records(records(:,1) == ub, :);
 
