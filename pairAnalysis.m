@@ -1,7 +1,11 @@
-% load in the records
-records = importdata('data\reality_matrix_15min.txt');
-records(:,1) = records(:,1) + 1;
+% Pairwise frequency and probability analysis
+clear topk topkF;
 
+%% calculate the pairwise colocation event
+% load in the records
+% records = importdata('data\reality_matrix_15min.txt');
+% records(:,1) = records(:,1) + 1;
+% 
 % % calculate the pairwise frequency
 % freq = zeros(4465, 1);
 % c = 1;
@@ -16,15 +20,15 @@ records(:,1) = records(:,1) + 1;
 % end
 % 
 % save pairwiseF.mat
-%{
-pairwiseF
-====================
-A 4465x1 struct array with fields:
-    f       -- co-location frequency
-    coloc   -- a sequence of co-location ID
-%}
+% {
+% pairwiseF
+% ====================
+% A 4465x1 struct array with fields:
+%     f       -- co-location frequency
+%     coloc   -- a sequence of co-location ID
+% }
 
-% plot the pairwise location distribution
+%% plot the pairwise location distribution of two cases
 
 % plot the topk non-friend meet
 % for i = 1:size(topk_nonfri_fre,1)
@@ -40,20 +44,27 @@ A 4465x1 struct array with fields:
 % end
 
 
+%% get individual probability of appearing at colocating places.
+
 load pairwiseF.mat
 % 
-% non-friend meet
+% non-friend meet (infrequent case: 1-10)
+c = 1;
 
-for i = 1:size(topk_nonfri_fre,1)
-    ua = topk_nonfri_fre(i,1);
-    ub = topk_nonfri_fre(i,2);
-    pairID = sum(94:-1:94-ua+2) + (ub - ua);
-    colocs = pairwiseF(pairID).coloc;
-    colc_fre = pairwiseF(pairID).coloc_fre;
-    [locsf, locIDmap] = pairLocDistribution(ua, ub, records);
-    for j = 1:length(colocs);
-        topk(i).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
-            locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
+for i = 1: size(nonfri_fre,1)
+    % only consider infrequent pair
+    if nonfri_fre(i,3) > 0 && nonfri_fre(i,3) <= 10
+        ua = nonfri_fre(i,1);
+        ub = nonfri_fre(i,2);
+        pairID = sum(94:-1:94-ua+2) + (ub - ua);
+        colocs = pairwiseF(pairID).coloc;
+        colc_fre = pairwiseF(pairID).coloc_fre;
+        [locsf, locIDmap] = pairLocDistribution(ua, ub, records);
+        for j = 1:length(colocs);
+            topk(c).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
+                locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
+        end
+        c = c + 1;
     end
 end
 
@@ -69,21 +80,24 @@ A 1x20 struct array with fields:
 
 
 
-% 
-% friend meet
 
+% friend meet
+c = 1;
 for i = 1:size(nondup_fri_fre,1)
-    ua = nondup_fri_fre(i,1);
-    ub = nondup_fri_fre(i,2);
-    pairID = sum(94:-1:94-ua+2) + (ub - ua);
-    colocs = pairwiseF(pairID).coloc;
-    colc_fre = pairwiseF(pairID).coloc_fre;
-    [locsf, locIDmap] = pairLocDistribution(ua, ub, records);
-    for j = 1:length(colocs);
-        % there are meeting events
-        if colocs > 0
-            topkF(i).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
-                locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
+    if nondup_fri_fre(i,3) > 0 && nondup_fri_fre(i,3) <= 10
+        ua = nondup_fri_fre(i,1);
+        ub = nondup_fri_fre(i,2);
+        pairID = sum(94:-1:94-ua+2) + (ub - ua);
+        colocs = pairwiseF(pairID).coloc;
+        colc_fre = pairwiseF(pairID).coloc_fre;
+        [locsf, locIDmap] = pairLocDistribution(ua, ub, records);
+        for j = 1:length(colocs);
+            % there are meeting events
+            if colocs > 0
+                topkF(c).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
+                    locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
+            end
+            c = c + 1;
         end
     end
 end

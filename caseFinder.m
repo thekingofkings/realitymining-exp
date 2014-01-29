@@ -1,3 +1,5 @@
+% Find the USER PAIR of two special cases
+
 %% friend pair id mapping
 load('data\maps.mat');
 
@@ -69,9 +71,10 @@ end
 nondup_fri = nondup_fri(sid, :);
 
 
-%% get the friends frequency
+%% get the friends pair frequency
 load 'data\binarys.mat';
-meeting_fre = freq;
+
+
 fri_fre = zeros(size(nondup_fri, 1), 1);
 for i = 1:size(nondup_fri, 1)
     ua = nondup_fri(i,1);
@@ -93,7 +96,7 @@ for i = 1:size(nondup_fri_fre,1)
 end
 
         
-% get the frequent meeting non-friend pair
+%% get the frequent meeting non-friend pair
 nonfri_fre = zeros(1,3);
 ind = 1;
 

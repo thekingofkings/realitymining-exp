@@ -1,6 +1,13 @@
 function [totalFre, uniq_coloc, coloc_fre] = pairColocateFreq( ua, ub, records ) 
-% give a pair of user with ID (1-95) and the records set
-% find their co-locating frequency
+% calculate co-locating frequency of a pair of users 
+% =====================================
+% Input:
+%       ua, ub  --- user ID range in (1-95)
+%       records --- the records set
+% Output:
+%       totalFre --- the total meeting frequency of two user
+%       uniq_coloc --- the locations where they meet
+%       coloc_fre  --- the co-location frequency of each co-locating place
 
 
 

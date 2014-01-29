@@ -1,5 +1,14 @@
 function [ locs_f, locIDmap ] = pairLocDistribution( ua, ub, records, figtitle, freq )
-% plot the freq of user a and b at locations
+% calculate (and plot) the individual frquency of a user at a location
+% ================================
+% Input:
+%       ua, ub --- the user ID range in (1-95)
+%       records --- the records set
+%       figtitle --- the title of figure (if plot)
+%       freq --- the meeting frequency of two users (for plotting)
+% Output:
+%       locs_f --- the frequencies of two users visiting the locations
+%       locIDmap --- the location uninon is mapped with continuous ID
 
 ra = records(records(:,1) == ua, :);
 rb = records(records(:,1) == ub, :);

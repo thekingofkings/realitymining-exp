@@ -16,7 +16,7 @@
 %     * binary_affliation
 %     * binary_friend
 %     * binary_group
-%     * meeting_fre
+%     * meeting_fre (15 minutes interval)
 % They are all statistics on each pair. In total, we have 95 users, so there
 % are nchoosek(95, 2) = 4465 pairs. For each pair we mark whether they are in
 % the same affiliation; they are in the same group; they are friends, and the
