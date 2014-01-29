@@ -1,4 +1,4 @@
-function coloc_fre = pairColocateFreq( ua, ub, records ) 
+function [totalFre, uniq_coloc, coloc_fre] = pairColocateFreq( ua, ub, records ) 
 % give a pair of user with ID (1-95) and the records set
 % find their co-locating frequency
 
@@ -27,6 +27,10 @@ while ia <= size(ra,1) && ib <= size(rb,1)
         end
     end
 end
-
-coloc_fre = c - 1;
+uniq_coloc = unique(coloc);
+coloc_fre = zeros(size(uniq_coloc));
+for i = 1:length(uniq_coloc)
+    coloc_fre(i) = sum(coloc==uniq_coloc(i));
+end
+totalFre = c - 1;
 end

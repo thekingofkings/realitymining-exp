@@ -74,7 +74,9 @@ load 'data\binarys.mat';
 meeting_fre = freq;
 fri_fre = zeros(size(nondup_fri, 1), 1);
 for i = 1:size(nondup_fri, 1)
-    pairID = sum(94:-1:94-i+2) + (j-i);
+    ua = nondup_fri(i,1);
+    ub = nondup_fri(i,2);
+    pairID = sum(94:-1:94-ua+2) + (ub - ua);
     fri_fre(i) = meeting_fre(pairID);
 end
 

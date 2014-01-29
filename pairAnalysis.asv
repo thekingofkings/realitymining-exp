@@ -80,18 +80,15 @@ for i = 1:size(nondup_fri_fre,1)
     colc_fre = pairwiseF(pairID).coloc_fre;
     [locsf, locIDmap] = pairLocDistribution(ua, ub, records);
     for j = 1:length(colocs);
-        % there are meeting events
-        if colocs > 0
-            topkF(i).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
-                locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
-        end
+        if nondup_fri_fre(i,3)
+        topkF(i).prob(j,1:6) = [colocs(j), colc_fre(j), ua, ub, ...
+            locsf(locIDmap==colocs(j),:) ./ sum(locsf)];
     end
 end
 
-save('topk.mat', 'topk', 'topkF');
 
 %{
-topkF
+topk
 ====================
 A 1x20 struct array with fields:
     prob   -- 6 columns, each means:
