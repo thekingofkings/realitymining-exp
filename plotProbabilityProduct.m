@@ -2,10 +2,10 @@
 
 load topk.mat;
 % for non-friend pair
-[nf_prod, nf_err] = probProdwithError( topk, 10 );
+[nf_prod, nf_err, nf_cnt ] = probProdwithError( topk, 10 );
 
 % for friend pair
-[f_prod, f_err] = probProdwithError (topkF, 10);
+[f_prod, f_err, f_cnt ] = probProdwithError (topkF, 10);
 
 figure()
 hold on;
