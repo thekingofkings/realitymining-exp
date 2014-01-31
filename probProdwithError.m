@@ -1,4 +1,4 @@
-function [ prod, error ] = probProdwithError( set, binNum )
+function [ prod, error, cnt ] = probProdwithError( set, binNum )
 % Calculate the product of individual probability with error
 
 prod = zeros(1,binNum);
