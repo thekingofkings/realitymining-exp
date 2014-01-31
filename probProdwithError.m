@@ -11,9 +11,9 @@ for i = 1: length(set)
     if ( ~isempty( set(i).prob) )
         binN = sum( set(i).prob(:,2) );
         locN = size( set(i).prob, 1);
-        t = 0;
+        t = 1;
         for j = 1 : locN
-            t = t + set(i).prob(j, 5) * set(i).prob(j,6);
+            t = t * set(i).prob(j, 5) * set(i).prob(j,6);
         end
         prod(binN) = prod(binN) + t;
         cnt(binN) = cnt(binN) + 1;
