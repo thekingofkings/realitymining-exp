@@ -1,4 +1,4 @@
-function [totalFre, uniq_coloc, coloc_fre] = pairColocateFreq( ua, ub, records ) 
+function [totalFre, uniq_coloc, coloc_fre, coloc, times] = pairColocateFreq( ua, ub, records ) 
 % calculate co-locating frequency of a pair of users 
 % =====================================
 % Input:
@@ -17,6 +17,7 @@ rb = records(records(:,1) == ub, :);
 ia = 1;
 ib = 1;
 coloc = zeros(1,1);
+times = zeros(1,1);
 c = 1;
 while ia <= size(ra,1) && ib <= size(rb,1)
     if ra(ia,2) > rb(ib,2)
@@ -27,6 +28,7 @@ while ia <= size(ra,1) && ib <= size(rb,1)
             continue
         else if ra(ia,3) == rb(ib,3)
                coloc(c) = ra(ia,3);
+               times(c) = ra(ia,2);
                c = c + 1;
             end
             ia = ia + 1;

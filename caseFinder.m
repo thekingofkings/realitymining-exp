@@ -74,6 +74,8 @@ nondup_fri = nondup_fri(sid, :);
 %% get the friends pair frequency
 load 'data\binarys.mat';
 
+meeting_fre = freq;
+
 
 fri_fre = zeros(size(nondup_fri, 1), 1);
 for i = 1:size(nondup_fri, 1)

@@ -3,22 +3,22 @@ clear topk topkF;
 
 %% calculate the pairwise colocation event
 % load in the records
-% records = importdata('data\reality_matrix_15min.txt');
-% records(:,1) = records(:,1) + 1;
-% 
-% % calculate the pairwise frequency
-% freq = zeros(4465, 1);
-% c = 1;
-% colocs = zeros(1,1);
-% for i = 1:95
-%     for j = i+1:95
-%         [freq(c), colocs, coloc_fre] = pairColocateFreq(i,j,records);
+records = importdata('data\reality_matrix_15min.txt');
+records(:,1) = records(:,1) + 1;
+
+% calculate the pairwise frequency
+freq = zeros(4465, 1);
+c = 1;
+colocs = zeros(1,1);
+for i = 1:95
+    for j = i+1:95
+        [freq(c), colocs, coloc_fre] = pairColocateFreq(i,j,records);
 %         pairwiseF(c,1).coloc = colocs;
 %         pairwiseF(c,1).coloc_fre = coloc_fre;
-%         c = c + 1;
-%     end
-% end
-% 
+        c = c + 1;
+    end
+end
+
 % save pairwiseF.mat
 % {
 % pairwiseF
