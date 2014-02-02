@@ -41,7 +41,7 @@ box on;
 % friends
 freq_friends = meeting_fre(binary_friend==1);
 l1 = cdfplot( freq_friends );
-set(l1, 'color', 'red', 'linewidth', 2);
+set(l1, 'color', 'green', 'linewidth', 2);
 
 % non-friends
 freq_nonfriends = meeting_fre(binary_friend==0);
@@ -50,10 +50,10 @@ set(l2, 'color', 'blue', 'linewidth', 2);
 
 % over all
 l3 = cdfplot( meeting_fre );
-set(l3, 'color', 'green', 'linewidth', 2, 'linestyle', ':');
+set(l3, 'color', 'red', 'linewidth', 2, 'linestyle', '-.');
 
 legend({'Friends', 'Non-friends', 'All'}, 'fontsize', 14);
-set(gca, 'fontsize', 14);
+set(gca, 'fontsize', 14, 'xscale', 'log');
 xlabel('CDF of meeting frequency', 'fontsize', 16);
 ylabel('Meeting frequency', 'fontsize', 16);
 title('');

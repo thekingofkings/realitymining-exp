@@ -17,3 +17,6 @@ box on;
 set(gca, 'fontsize', 14, 'linewidth', 2);
 ylabel('Product of individual Probability', 'fontsize', 15);
 xlabel('Frequency of meeting', 'fontsize', 15);
+print('fig/probabilityProduct.eps', '-dpsc');
+system('epstopdf fig/probabilityProduct.eps');
+delete fig/probabilityProduct.eps
